@@ -3,39 +3,40 @@ include_once("../../configuracion.php");
 $tituloPagina = "TechnoMate | Administrador";
 include_once("../estructura/headSeguro.php");
 include_once("../estructura/navSeguro.php");
+
+$objUsuario = new AbmUsuario();
+$colUsuarios = $objUsuario->buscar("");
+
+$objUsuarioRol = new AbmUsuarioRol();
+$colUsuarioRol = $objUsuarioRol->buscar("");
 ?>
+<div class="container-fluid" style="padding: 50px;">
 
-<div class="contenido-pagina">
-    <div class="contenedor-acciones">
-
-        <div class="accion-admin">
-            <a data-bs-target="#modalNuevoUsuario" tabindex="-1" data-bs-toggle="modal">
-                <img class="imagen-accion" src="../../Archivos/Imagenes/accionAdmin1.png" alt="Crear nuevo usuario">
-                <div class="informacion-accion">
-                    <p>CREAR NUEVOS USUARIOS</p>
-                </div>
-            </a>
-        </div>
-
-        <div class="accion-admin">
-            <a href="listarUsuarios.php">
-                <img class="imagen-accion" src="../../Archivos/Imagenes/accionAdmin2.png"
-                    alt="Actualizar información de usuario">
-                <div class="informacion-accion">
-                    <p>ACTUALIZAR INFORMACIÓN DE USUARIOS</p>
-                </div>
-            </a>
-        </div>
-
-        <div class="accion-admin">
-            <a href="../administrador/gestionMenu.php">
-                <img class="imagen-accion" src="../../Archivos/Imagenes/accionAdmin3.png" alt="Crear nuevo rol">
-                <div class="informacion-accion">
-                    <p>CREAR NUEVOS ROLES E ÍTEMS DE MENÚ</p>
-                </div>
-            </a>
-        </div>
-    </div>
+    <button class='btn text-white btn-success'><i class="bi bi-person-fill-add"></i> Crear usuario</button>
+    <p></p>
+    <?php
+    if (!empty($colUsuarioRol)){
+        echo "<h4>Listado de usuarios</h4>";
+        echo "<table class='table table-striped'>";
+        echo "<th>#</th>
+        <th>Nombre de Usuario</th>
+        <th>Roles</th>
+        <th>Modificar</th>";
+    foreach($colUsuarios as $usuario){
+        echo "<tr>
+        <td>".$usuario->getIdUsuario()."</td>
+        <td>".$usuario->getUsNombre()."</td>
+        <td>Pongo sus roles</td>
+        <td><button class='btn text-white btn-dark' data-bs-toggle='modal' data-bs-target='#modalModificacion' tabindex='-1'><a style='text-decoration: none;' href='formModificarUsuarios.php?idusuario= ". $usuario->getIdusuario() . "'>Datos</a></button>
+        <button class='btn text-white btn-dark' data-bs-toggle='modal' data-bs-target='#modalModificacion' tabindex='-1'><a style='text-decoration: none;' href='formModificarRoles.php?idusuario= ". $usuario->getIdusuario() . "'>Roles</a></button>
+        </td>
+        </tr>";
+    }
+    echo "</table>";
+    } else {
+        echo "<h4>No hay usuarios cargados en la Base de Datos";
+    }
+?>
 </div>
 
 <?php
