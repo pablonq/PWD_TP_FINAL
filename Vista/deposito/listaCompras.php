@@ -1,7 +1,7 @@
 <?php
 $dir="";
 $titulo = "Supervisar compras";
-include_once $dir."../estructura/headerSeguro.php";
+include_once $dir."../estructura/headSeguro.php";
 //include_once '../../configuracion.php';
 
 ?>

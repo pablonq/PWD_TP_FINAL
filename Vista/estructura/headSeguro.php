@@ -9,6 +9,8 @@ $rol = $_SESSION['rol'];
 /* $menu = new AbmMenu();//se crea un objeto menu
 $param['idpadre'] = $rol;/* el 3 corresponde a clientes, 2 a deposito, 1 a administrador
 $listaMenu = $menu->buscar($param);//se busca el menu segun el idpadre */
+
+
 $listaMenu = $objSession->vericarPermisos();
 if($listaMenu){
     $ruta = $objSession->rutaCarpetas();
