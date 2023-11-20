@@ -15,14 +15,14 @@
                   <div class="product">
                     <div class="row">
                         <div class="col-md-2 d-flex">
-                            <img src="<?php echo $item->getObjProducto()->getUrlimagen(); ?>" class="img-fluid mx-auto d-flex image">
+                            <img src="<?php echo $item->getObjProducto()->getImagenProducto(); ?>" class="img-fluid mx-auto d-flex image">
                         </div>
                         <div class="col-md-8">
                             <div class="info">
                                 <div class="row">
                                     <div class="col-md-5 product-name">
                                         <div class="product-name">
-                                            <a href="#"><?php echo $item->getObjProducto()->getProDetalle(); ?></a>
+                                            
                                             <div class="product-info">
                                                 <div>Marca: 
                                                     <span class="value"><?php echo $item->getObjProducto()->getPronombre(); ?></span>
@@ -34,7 +34,7 @@
                                         </div>
                                     </div>                                        
                                     <div class="col-md-2 price">
-                                        <span>$ <?php echo $item->getObjProducto()->getPrecio(); ?></span>
+                                        <span>$ <?php echo $item->getObjProducto()->getProDetalle(); ?></span>
                                     </div>
                                 </div>
                             </div>
@@ -42,7 +42,7 @@
                     </div>
                  </div>
                  <?php
-                 $suma = $suma + $item->getObjProducto()->getPrecio() * $item->getCicantidad();
+                 $suma = $suma + $item->getObjProducto()->getProDetalle() * $item->getCiCantidad();
                 }
             } 
             ?>
@@ -58,7 +58,7 @@
 
                 $param["idcompra"] = $datos["idcompra"];
                 $param["idcompraestadotipo"] = 2;
-                $objCntrlCE = new ABMcompraestado();
+                $objCntrlCE = new AbmCompraEstado();
                 $objEstado1 = $objCntrlCE->verificarEstado($param);
                 $param2["idcompra"] = $datos["idcompra"];
                 $param2["idcompraestadotipo"] = 3;

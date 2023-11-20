@@ -25,11 +25,12 @@ if(count($listacompra)>0){
             $param["idcompra"] = $idcompra;
             /* $param["cefechafin"]="null";
             $param["idcompraet"] =0; */
+           
                        
             $objCntrlCE= new AbmCompraEstado();
             $arreCE=$objCntrlCE->buscar($param);
             /* print_r($arreCE); */
-            if(count($arreCE)==1)
+            if(count($arreCE)!=0)
             {
                 $estado=$arreCE[0]->getObjCompraEstadoTipo()->getDescripcion();
                 $idcompraestado=$arreCE[0]->getIdCompraEstado();
