@@ -7,6 +7,7 @@
     
     $arrayDatos['uspass'] = NULL;
 
+    //Verifico si hay contraseña para poder encriptarla
     if (array_key_exists('uspass', $datos)){
         $passEncriptada= md5($datos['uspass']);
         $arrayDatos['uspass'] = $passEncriptada;
@@ -24,10 +25,11 @@
     if (!empty($usuario)){
         if ($objUsuario->modificar($arrayDatos)){
             $_SESSION['usnombre'] = $datos['usnombre'];
-
-            //ARREGLAR REDIRECCIONAMIENTO
-            // header ('Location: listarUsuarios.php?exito='.$datos['usnombre']); //no anda xd
+            header("Location: ../homeAdministrador.php?error=exito");
+            exit();
+        } else {
+            header("Location: ../homeAdministrador.php?error=fallo");
+            exit();
         }
-    } else {
-        // header ('Location: ../modificarUsuarios/formModificarUsuarios.php?idusuario='.$datos['idusuario']);
     }
+    

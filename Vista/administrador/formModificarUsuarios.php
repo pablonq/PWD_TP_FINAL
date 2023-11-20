@@ -13,21 +13,9 @@ $tituloPagina = "TechnoMate | Administrador";
 include_once '../estructura/headSeguro.php';
 include_once '../estructura/navSeguro.php';
 
-/* $objSesion = new Session();
-
-if ($objSesion->validar()){
-    if($_SESSION['rol'] == 1){
-        include_once '../estructura/secciones/nav-bar-2.php';
-    } else {
-        header('Location: home.php');
-    }
-    
-} else {
-    header('Location: home.php');
-} */
 ?>
 <div class="container" style="padding: 50px;">
-    <form name="actualizarUsuario" id="actualizarUsuario" method="POST" action="Accion/modificarUsuarios.php"
+    <form name="actualizarUsuario" id="actualizarUsuario" method="POST" action="Accion/actionActualizar.php"
         class="needs-validation" novalidate>
         <h3>Ingrese los nuevos datos a modificar</h3>
         <br>
@@ -60,10 +48,10 @@ if ($objSesion->validar()){
         <br>
 
         <div class="d-grid mb-3 gap-2">
-            <input type="submit" value="Editar" class="btn text-white  btn-dark"></input>
+            <input type="submit" value="Editar" class="btn text-white btn-success"></input>
         </div>
     </form>
-    <a href="./listarUsuarios.php"><input type="submit" value="Cancelar" class="btn text- white btn-danger">
+    <a href="./homeAdministrador.php"><input type="submit" value="Volver" class="btn text-white btn-dark">
         </input></a>
 </div>
 
