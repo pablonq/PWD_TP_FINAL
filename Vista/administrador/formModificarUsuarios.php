@@ -17,7 +17,7 @@ include_once '../estructura/navSeguro.php';
 <div class="container" style="padding: 50px;">
     <form name="actualizarUsuario" id="actualizarUsuario" method="POST" action="Accion/actionActualizar.php"
         class="needs-validation" novalidate>
-        <h3>Ingrese los nuevos datos a modificar</h3>
+        <h3>DATOS A MODIFICAR</h3>
         <br>
 
         <div class="contenedor-dato">
@@ -41,11 +41,11 @@ include_once '../estructura/navSeguro.php';
         </div>
         <br>
 
-        <div class="contenedor-dato">
-            <label for="uspass" class="form-label">Contraseña</label>
-            <input type="password" name="uspass" id="uspass" class="form-control"></input>
-        </div>
-        <br>
+        <input type="password" name="uspass" id="uspass" class="form-control"
+            value="<?php echo $usuario[0]->getUsPass() ?>" hidden></input>
+
+        <input type="password" name="usdeshabilitado" id="usdeshabilitado" class="form-control"
+            value="<?php echo $usuario[0]->getUsDeshabilitado() ?>" hidden></input>
 
         <div class="d-grid mb-3 gap-2">
             <input type="submit" value="Editar" class="btn text-white btn-success"></input>

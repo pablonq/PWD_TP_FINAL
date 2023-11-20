@@ -99,7 +99,7 @@ class AbmUsuario
 
             $objUsuario = $this->cargarObjeto($param);
             
-            if ($objUsuario != null and $objUsuario->modificar()) {
+            if ($objUsuario != null && $objUsuario->modificar()) {
                 $respuesta = true;
             }
         }

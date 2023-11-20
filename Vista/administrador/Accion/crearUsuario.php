@@ -16,7 +16,7 @@ $objUsuario = new AbmUsuario();
 $resultado = $objUsuario->alta($param);
 
 if ($resultado){
-    $respuesta = array("resultado" => "exito", "mensaje" => "Su cuenta ha sido creada con éxito.
+    $respuesta = array("resultado" => "exito", "mensaje" => "El usuario ha sido creada con éxito.
     \nEspere a que un administrador le asigne un rol para poder ingresar.
     \nLa clave generada por defecto es: 123456
     \nRecuerde cambiarla en su próximo inicio de sesión.");

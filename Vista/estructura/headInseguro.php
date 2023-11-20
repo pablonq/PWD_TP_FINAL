@@ -2,6 +2,7 @@
 <html lang="es">
 
 <!-- ____________________________________ INICIO HEAD ______________________________ -->
+
 <head>
 
     <meta charset="UTF-8">
@@ -20,6 +21,9 @@
     <script src="../../Utiles/librerias/jquery/jquery.validate.min.js"></script>
     <script src="../../Utiles/librerias/jquery/messages_es_PE.js"></script>
 
+    <!-- jsDelivr CDN para sweetalert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- link a librería JS para encriptar -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 
@@ -34,4 +38,5 @@
 </head>
 
 <!-- ____________________________________ INICIO BODY ______________________________ -->
+
 <body>

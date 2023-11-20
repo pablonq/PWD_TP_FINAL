@@ -5,16 +5,16 @@ $(document).ready(function () {
             usnombreCrearCuenta: {
                 required: true,
                 //nombre            //valor que debe tener
-                nombreNoRepetido: {nombreNoRepetido: true}
+                nombreNoRepetido: { nombreNoRepetido: true }
             },
             usmailCrearCuenta: {
                 required: true,
-                mailValido: {mailValido: true}
+                mailValido: { mailValido: true }
             },
             captchaCrearCuenta: {
-                captchaCrearCuentaSinExpirar: {captchaCrearCuentaSinExpirar: true},
+                captchaCrearCuentaSinExpirar: { captchaCrearCuentaSinExpirar: true },
                 required: true,
-                captchaCrearCuentaCorrecto: {captchaCrearCuentaCorrecto: true}
+                captchaCrearCuentaCorrecto: { captchaCrearCuentaCorrecto: true }
             }
         },
         messages: {
@@ -41,24 +41,24 @@ $(document).ready(function () {
             $(element).removeClass("is-invalid").addClass("is-valid");
         },
 
-        submitHandler: function(form){
+        submitHandler: function (form) {
 
             var formData = $(form).serialize()
-            
-            $.ajax({ 
+
+            $.ajax({
                 url: "../../Control/Ajax Antiguo/crearCuenta.php",
                 type: "POST",
                 dataType: "json",
                 data: formData,
                 async: false,
 
-                complete: function(xhr, textStatus) {
+                complete: function (xhr, textStatus) {
                     //se llama cuando se recibe la respuesta (no importa si es error o éxito)
                     console.log("La respuesta regreso");
                 },
-                success: function(respuesta, textStatus, xhr) {
+                success: function (respuesta, textStatus, xhr) {
                     //se llama cuando tiene éxito la respuesta
-                    if (respuesta.resultado == "exito"){
+                    if (respuesta.resultado == "exito") {
                         console.log("El resultado de la consulta es: " + respuesta.resultado);
 
                     } else {
@@ -72,7 +72,7 @@ $(document).ready(function () {
                     //$("#modalCrearCuenta").modal("hide");
 
                 },
-                error: function(xhr, textStatus, errorThrown) {
+                error: function (xhr, textStatus, errorThrown) {
                     //called when there is an error
                     console.error("Error en la solicitud Ajax: " + textStatus + " - " + errorThrown)
                     console.log(xhr.responseText);//muestra en la consola del navegador todos los errores
@@ -81,7 +81,7 @@ $(document).ready(function () {
         }
     });
 
-    $("#actualizarCaptchaCrearCuenta").on("click", function() {
+    $("#actualizarCaptchaCrearCuenta").on("click", function () {
         $("#imgCaptchaCrearCuenta").attr("src", "../../Control/captchaCrearCuenta.php?r=" + Math.random());
     });
 });
@@ -103,9 +103,9 @@ jQuery.validator.addMethod("captchaCrearCuentaCorrecto", function (value, elemen
 }, "El captcha ingresado es incorrecto");
 
 
-function nombreNoRepetido(value){
+function nombreNoRepetido(value) {
 
-    var formData = {'usnombreCrearCuenta': value};//array en formato json. value es el dato recibido desde el formulario
+    var formData = { 'usnombreCrearCuenta': value };//array en formato json. value es el dato recibido desde el formulario
     var ruta = "../../Control/Ajax Antiguo/nombreNoRepetido.php";
     var resultado = false;
 
@@ -117,9 +117,9 @@ function nombreNoRepetido(value){
         dataType: "json",
         async: false,
 
-        success: function(respuesta) {
+        success: function (respuesta) {
 
-            if (respuesta.validacion == "exito"){
+            if (respuesta.validacion == "exito") {
                 resultado = true;
             }
         }
@@ -129,12 +129,12 @@ function nombreNoRepetido(value){
     return resultado;
 }
 
-function captchaCrearCuentaSinExpirar(value){
+function captchaCrearCuentaSinExpirar(value) {
 
-    var formData = {'captchaCrearCuenta': value};
+    var formData = { 'captchaCrearCuenta': value };
     var ruta = "../../Control/Ajax Antiguo/captchaCrearCuentaSinExpirar.php";
     var resultado = false;
-        
+
     $.ajax({
 
         url: ruta,
@@ -143,9 +143,9 @@ function captchaCrearCuentaSinExpirar(value){
         dataType: "json",
         async: false,
 
-        success: function(respuesta) {
+        success: function (respuesta) {
 
-            if (respuesta.validacion == "exito"){
+            if (respuesta.validacion == "exito") {
                 resultado = true;
             }
         }
@@ -155,12 +155,12 @@ function captchaCrearCuentaSinExpirar(value){
     return resultado;
 }
 
-function captchaCrearCuentaCorrecto(value){
+function captchaCrearCuentaCorrecto(value) {
 
-    var formData = {'captchaCrearCuenta': value};
+    var formData = { 'captchaCrearCuenta': value };
     var ruta = "../../Control/Ajax Antiguo/captchaCrearCuentaCorrecto.php";
     var resultado = false;
-        
+
     $.ajax({
 
         url: ruta,
@@ -169,9 +169,9 @@ function captchaCrearCuentaCorrecto(value){
         dataType: "json",
         async: false,
 
-        success: function(respuesta) {
+        success: function (respuesta) {
 
-            if (respuesta.validacion == "exito"){
+            if (respuesta.validacion == "exito") {
                 resultado = true;
             }
         }
