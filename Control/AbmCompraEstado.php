@@ -143,6 +143,32 @@ class AbmCompraEstado{
         }
         return $objCompraEstado;
     }
+    public function cambiarEstado($datos)
+    {
+        $hoy = date("Y-m-d H:i:s");
+        $datos["cefechaini"]=$hoy;
+        $datos["cefechafin"]="null";
+        if($datos["idcompraestadotipo"]==4)
+        {
+          $objCtrlCI=new ABMcompraitem();
+          $data["idcompra"]=$datos["idcompra"];
+          $objCtrlCI->devolverProductos($data);
+        }else{
+          $param["idcompraestado"]=$datos["idcompraestado"];  
+           //agregamos el nuevo estado 
+          $seagrego = $this->alta($datos); 
+           //para actualizar asignamos la fecha fin del estado anterior 
+           //print_r($seactualizo);
+          $seactualizo = $this->modificar($param);     
+             
+          
+       }       
+       $resultado["seagrego"]=$seagrego;
+       $resultado["seactualizo"]=$seactualizo;
+
+       return $resultado;
+
+    }
 }
 
 ?>
