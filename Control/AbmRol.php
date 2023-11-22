@@ -69,7 +69,7 @@ class AbmRol{
     public function baja($param){
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
-            $unObjRol = $this->cargarObjeto($param);
+            $unObjRol = $this->cargarObjetoConClave($param);
             if ($unObjRol!=null && $unObjRol->eliminar()){
                 $resp = true;
             }

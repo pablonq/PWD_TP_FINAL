@@ -132,36 +132,15 @@ class AbmUsuarioRol{
         return $arreglo;
     }
 
-    /**
-     * Agrega, modifica o elimina roles de un usuario. Retorna booleano
-     * indicando éxito o fracaso de la operación.
-     * @param array $param
-     * @return boolean
-     */
-    public function cambiarRol($param){
-        $objUsuarioRol = new UsuarioRol();
-        $pudo = false;
-        switch ($param['operacion']){
-            case "darAdmin":
-                $pudo = $objUsuarioRol->alta($param, ['idrol' => 1]);
-                break;
-            case "darDeposito":
-                $pudo = $objUsuarioRol->alta($param, ['idrol' => 2]);
-                break;
-            case "darCliente":
-                $pudo = $objUsuarioRol->alta($param, ['idrol' => 3]);
-                break;
-            case "quitarAdmin":
-                $pudo = $objUsuarioRol->baja($param, ['idrol' => 1]);
-                break;
-            case "quitarDeposito":
-                $pudo = $objUsuarioRol->baja($param, ['idrol' => 2]);
-                break;
-            case "quitarCliente":
-                $pudo = $objUsuarioRol->baja($param, ['idrol' => 3]);
-                break;
+
+    public function prueba($param){
+        $objUsuario = new AbmUsuario();
+        $aver = $objUsuario->borrarRol();
+        if ($aver) {
+            echo "si se pudo";
+        } else {
+            echo "no se pudo";
         }
-        return $pudo;
     }
 }
 

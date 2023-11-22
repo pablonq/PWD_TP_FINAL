@@ -20,8 +20,8 @@ $colUsuarios = $objUsuario->buscar($datos);
 
 // Agarro su id
 $idUsuario['idusuario'] = $colUsuarios[0]->getIdUsuario();
-// verEstructura($idUsuario);
 
+// Guardo todos sus roles vinculados para después mostrarlos por pantalla
 $objUsuarioRol = new AbmUsuarioRol();
 $colUsuarioRol = $objUsuarioRol->buscar($idUsuario);
 
@@ -31,84 +31,64 @@ $colUsuarioRol = $objUsuarioRol->buscar($idUsuario);
     <div id="estado-cambio-rol">
 
     </div>
-    <form name="actualizarUsuario" id="actualizarUsuario" method="POST" class="needs-validation" novalidate>
-        <h3>Modificar roles</h3>
-        <br>
-        <?php
-        echo "<table class='table table-striped'>";
-        echo "<th>#</th>
+    <h3>Modificar roles</h3>
+    <br>
+    <table class='table table-striped'>
+        <th>#</th>
         <th>Nombre de Usuario</th>
         <th>Roles actuales</th>
         <th>
-        <div class='dropdown'>
-        <button class='btn btn-success dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
-        Agregar roles
-        </button>
-        <ul class='dropdown-menu'>
-            <input class='btn btn-dark boton-accion' value='darAdmin' type='submit' onclick='cambiarRoles(this);'></input>
-            <input class='btn btn-dark boton-accion' value='darDeposito' type='submit' onclick='cambiarRoles(this);'></input>
-            <input class='btn btn-dark boton-accion' value='darCliente' type='submit' onclick='cambiarRoles(this);'></input>
-        </ul>
-        </div>
+            <div class='dropdown'>
+                <button class='btn btn-success dropdown-toggle' type='button' data-bs-toggle='dropdown'
+                    aria-expanded='false'>
+                    Agregar roles
+                </button>
+                <ul class='dropdown-menu'>
+                    <form name='agregarRolesForm' method='POST' action='Accion/cambiarRoles.php'>
+                        <input type='hidden' name='idusuario' value="<?php echo $colUsuarios[0]->getIdUsuario(); ?>">
+                        <input type='hidden' name='accion' value="alta">
+                        <button class='btn btn-dark' name='idrol' value='1' type='submit'>Admin</button>
+                        <button class='btn btn-dark' name='idrol' value='2' type='submit'>Deposito</button>
+                        <button class='btn btn-dark' name='idrol' value='3' type='submit'>Cliente</button>
+                    </form>
+
+                </ul>
+            </div>
         </th>
         <th>
-        <div class='dropdown'>
-        <button class='btn btn-danger dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
-        Quitar roles
-        </button>
-        <ul class='dropdown-menu'>
-            <input class='btn btn-dark boton-accion' value='quitarAdmin' type='submit' onclick='cambiarRoles(this);'></input>
-            <input class='btn btn-dark boton-accion' value='quitarDeposito' type='submit' onclick='cambiarRoles(this);'></input>
-            <input class='btn btn-dark boton-accion' value='quitarCliente' type='submit' onclick='cambiarRoles(this);'></input>
-        </ul>
-        </div>
+            <div class='dropdown'>
+                <button class='btn btn-danger dropdown-toggle' type='button' data-bs-toggle='dropdown'
+                    aria-expanded='false'>
+                    Quitar roles
+                </button>
+                <ul class='dropdown-menu'>
+                    <form name='quitarRolesForm' method='POST' action='Accion/cambiarRoles.php'>
+                        <input type='hidden' name='idusuario' value="<?php echo $colUsuarios[0]->getIdUsuario(); ?>">
+                        <input type='hidden' name='accion' value="baja">
+                        <button class='btn btn-dark' name='idrol' value='1' type='submit'>Admin</button>
+                        <button class='btn btn-dark' name='idrol' value='2' type='submit'>Deposito</button>
+                        <button class='btn btn-dark' name='idrol' value='3' type='submit'>Cliente</button>
+                    </form>
+
+                </ul>
+            </div>
         </th>
         <tr>
-        <td>".$colUsuarios[0]->getIdUsuario()."</td>
-        <td>".$colUsuarios[0]->getUsNombre()."</td>
-        <td>"; foreach ($colUsuarioRol as $rol){
-            print_r($rol->getObjRol()->getRolDescripcion());
-            echo "<br>";
-        }";
-        </td>
+            <?php
+            echo "<td>".$colUsuarios[0]->getIdUsuario()."</td>
+            <td>".$colUsuarios[0]->getUsNombre()."</td>
+            <td>"; foreach ($colUsuarioRol as $rol){
+                print_r($rol->getObjRol()->getRolDescripcion());
+                echo "<br>";
+                }";
+            </td>
         </tr>";
-        echo "</table>";
-        ?>
-    </form>
-    <a href="./homeAdministrador.php"><input type="submit" value="Volver" class="btn text- white btn-dark">
-        </input></a>
+        echo "
+    </table>";
+    ?>
+            <a href="./homeAdministrador.php"><input type="submit" value="Volver" class="btn text- white btn-dark">
+                </input></a>
 </div>
-
-<script>
-function cambiarRoles(elementoBoton) {
-
-    var accion = elementoBoton.value;
-    var idusuario = <?php echo $colUsuarios[0]->getIdUsuario(); ?>;
-    alert(idusuario);
-    var parametros = {
-        'operacion': accion,
-        'idusuario': idusuario
-    };
-
-    $.ajax({
-        data: parametros,
-        url: './ajax/cambiarRoles.php',
-        type: 'POST',
-        dataType: "json",
-        async: false,
-
-        beforeSend: function() {
-            $('#estado-cambio-rol').html("<div class='spinner-border text-primary' role='status'>");
-        },
-
-        success: function(respuesta) {
-            if (respuesta == 'exito') {}
-            $('#estado-cambio-rol').html(
-                "<div class='alert alert-success' role='alert'>¡Operación exitosa!</div>");
-        }
-    });
-}
-</script>
 <?php 
 include_once('../estructura/footer.php');
 ?>
