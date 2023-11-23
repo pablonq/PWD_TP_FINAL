@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-12 col-lg-12">
+  <div class="col-md-10 col-lg-12">
     <div class="items">
       <?php
         include_once "../../../configuracion.php";

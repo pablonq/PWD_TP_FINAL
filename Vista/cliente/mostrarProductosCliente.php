@@ -40,7 +40,7 @@ for ($i = 0; $i < count($listaProd); $i++) {
     echo "<p class='card-text'>Stock disponible:" . $listaProd[$i]->getProCantstock() . "</p>";  
 ?>
     
-<button type='button' class='btn' onclick='enviar(<?php echo $listaProd[$i]->getIdProducto()?>)'><i class='bi bi-cart-plus-fill text-start'></i></button>
+<button type='button' class='btn btn-dark' onclick='enviar(<?php echo $listaProd[$i]->getIdProducto()?>)'>Agregar</button>
     
     </div>
     
@@ -56,8 +56,8 @@ echo "</div>";
 
 include_once("../estructura/footer.php");
 ?>
-<script>
 
+<script >
 function enviar(codigo) {
     location.href="detalleProducto.php?codigo="+codigo;
 }

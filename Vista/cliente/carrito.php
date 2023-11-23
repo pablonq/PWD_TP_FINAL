@@ -3,7 +3,7 @@ include_once("../../configuracion.php");
 $texto = 'Mi Carrito';
 $tituloPagina = "TechnoMate | " . $texto;
 include_once("../estructura/headSeguro.php");
-//include_once("../estructura/navSeguro.php"); este nav me esta gerando errores.....
+/* include_once("../estructura/navSeguro.php");  */
 $session =new Session();
 $total=0;
 
