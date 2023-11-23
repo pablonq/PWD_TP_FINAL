@@ -52,6 +52,7 @@ $(document).ready(function () {
                     //se llama cuando tiene éxito la respuesta
                     if (respuesta.resultado == "exito") {
                         console.log("El resultado de la consulta es: " + respuesta.resultado);
+                        alert("entra");
 
                     } else {
                         console.log(respuesta.resultado);

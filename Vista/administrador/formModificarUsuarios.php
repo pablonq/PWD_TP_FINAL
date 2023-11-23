@@ -9,7 +9,7 @@ $idUsuario = data_submitted();
 $objUsuario = new AbmUsuario();
 $usuario = $objUsuario->buscar($idUsuario);
 
-$tituloPagina = "TechnoMate | Administrador";
+$tituloPagina = "Modificar usuarios";
 include_once '../estructura/headSeguro.php';
 include_once '../estructura/navSeguro.php';
 

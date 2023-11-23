@@ -1,9 +1,11 @@
 <?php
 include_once("../../configuracion.php");
+include_once('formCrearUsuario.php');
+
 $tituloPagina = "Home administrador";
 include_once("../estructura/headSeguro.php");
 include_once("../estructura/navSeguro.php");
-include_once('formCrearUsuario.php');
+
 
 $datos= data_submitted();
 
@@ -31,8 +33,8 @@ if(isset($datos['error'])) {
     }
 }
 ?>
-<div class="container-fluid" style="padding: 50px;">
 
+<div class="container-fluid" style="padding: 50px;">
     <button class='btn text-white btn-success' data-bs-toggle="modal" data-bs-target="#modalCrearCuenta"
         tabindex="-1"><i class="bi bi-person-fill-add"></i> Crear usuario</button>
     <button onclick="window.location.reload();" class="btn btn-secondary"><i class="bi bi-arrow-clockwise"></i></button>
@@ -53,7 +55,7 @@ if(isset($datos['error'])) {
         <td>".$usuario->getUsMail()."</td>
         <td>".$usuario->getUsDeshabilitado()."</td>
         <td><a style='text-decoration: none;' href='formModificarUsuarios.php?idusuario= ". $usuario->getIdusuario() . "'><button class='btn text-white btn-primary'><i class='bi bi-pencil'></i> Editar</button></a>
-        <a style='text-decoration: none;' href='formModificarRoles.php?idusuario= ". $usuario->getIdusuario() . "'><button class='btn text-white btn-secondary'><i class='bi bi-exposure'></i> Roles</button></a>
+        <a style='text-decoration: none;' href='formModificarRoles.php?idusuario= ". $usuario->getIdusuario() . "'><button class='btn text-white btn-success'><i class='bi bi-exposure'></i> Roles</button></a>
         <a style='text-decoration: none;' href='./Accion/deshabilitarUsuario.php?idusuario= ". $usuario->getIdusuario() . "'><button class='btn text-white btn-danger'><i class='bi bi-trash'></i></button></a>
         </td>
         </tr>";

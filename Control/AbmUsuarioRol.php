@@ -132,16 +132,43 @@ class AbmUsuarioRol{
         return $arreglo;
     }
 
+/**
+ * Espera como parámetro un array asociativo, donde sus claves indican
+ * el tipo de cambio de rol que se hará y a qué usuario. Retorna booleano
+ * indicando éxito o fracaso de la operación.
+ * @param array $param
+ * @return boolean
+ */
+public function cambiarRoles($param){
 
-    public function prueba($param){
-        $objUsuario = new AbmUsuario();
-        $aver = $objUsuario->borrarRol();
-        if ($aver) {
-            echo "si se pudo";
-        } else {
-            echo "no se pudo";
-        }
+    $objUsuarioRol = new AbmUsuarioRol();
+    
+    // Acá guardo la operación de cambio de rol que será evaluada
+    $accion = $param['rol'];
+    $pudo = false;
+
+    switch ($accion){
+        case "alta1":
+            $pudo = $objUsuarioRol->alta(['idusuario' => $param['idusuario'], 'idrol' => 1]);
+            break;
+        case "alta2":
+            $pudo = $objUsuarioRol->alta(['idusuario' => $param['idusuario'], 'idrol' => 2]);
+            break;
+        case "alta3":
+            $pudo = $objUsuarioRol->alta(['idusuario' => $param['idusuario'], 'idrol' => 3]);
+            break;
+        case "baja1":
+            $pudo = $objUsuarioRol->baja(['idusuario' => $param['idusuario'], 'idrol' => 1]);
+            break;
+        case "baja2":
+            $pudo = $objUsuarioRol->baja(['idusuario' => $param['idusuario'], 'idrol' => 2]);
+            break;
+        case "baja3":
+            $pudo = $objUsuarioRol->baja(['idusuario' => $param['idusuario'], 'idrol' => 3]);
+            break;
     }
+    return $pudo;
+}
 }
 
 ?>

@@ -7,7 +7,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form name="formCrearCuenta" id="formCrearCuenta" method="POST" class="needs-validation" novalidate>
+                <form name="formCrearCuenta" id="formCrearCuenta" method="POST" action="/Accion/crearUsuario.php"
+                    class="needs-validation" novalidate>
 
                     <div class="contenedor-dato">
                         <label for="usnombreCrearCuenta" class="form-label">Nombre usuario</label>
@@ -24,8 +25,8 @@
 
                     <br>
                     <div class="d-grid mb-3 gap-2">
-                        <a href="./homeAdministrador.php"><button type="submit" name="botonCrearCuenta"
-                                id="botonCrearCuenta" class="btn text-white  btn-dark">Crear</button></a>
+                        <button type="submit" name="botonCrearCuenta" id="botonCrearCuenta"
+                            class="btn text-white  btn-dark">Crear</button>
                     </div>
                 </form>
             </div>

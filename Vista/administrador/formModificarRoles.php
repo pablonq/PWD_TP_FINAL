@@ -20,6 +20,7 @@ $colUsuarios = $objUsuario->buscar($datos);
 
 // Agarro su id
 $idUsuario['idusuario'] = $colUsuarios[0]->getIdUsuario();
+$id = $colUsuarios[0]->getIdUsuario();
 
 // Guardo todos sus roles vinculados para después mostrarlos por pantalla
 $objUsuarioRol = new AbmUsuarioRol();
@@ -44,14 +45,14 @@ $colUsuarioRol = $objUsuarioRol->buscar($idUsuario);
                     Agregar roles
                 </button>
                 <ul class='dropdown-menu'>
-                    <form name='agregarRolesForm' method='POST' action='Accion/cambiarRoles.php'>
-                        <input type='hidden' name='idusuario' value="<?php echo $colUsuarios[0]->getIdUsuario(); ?>">
-                        <input type='hidden' name='accion' value="alta">
-                        <button class='btn btn-dark' name='idrol' value='1' type='submit'>Admin</button>
-                        <button class='btn btn-dark' name='idrol' value='2' type='submit'>Deposito</button>
-                        <button class='btn btn-dark' name='idrol' value='3' type='submit'>Cliente</button>
+                    <form id='agregarRolesForm' method='POST'>
+                        <button class='btn btn-dark boton-accion' type='button' value='alta1'
+                            onclick="cambiarRol('alta1', <?php echo $id ?>);">Admin</button>
+                        <button class='btn btn-dark boton-accion' type='button' value='alta2'
+                            onclick="cambiarRol('alta2', <?php echo $id ?>);">Deposito</button>
+                        <button class='btn btn-dark boton-accion' type='button' value='alta3'
+                            onclick="cambiarRol('alta3', <?php echo $id ?>);">Cliente</button>
                     </form>
-
                 </ul>
             </div>
         </th>
@@ -62,12 +63,13 @@ $colUsuarioRol = $objUsuarioRol->buscar($idUsuario);
                     Quitar roles
                 </button>
                 <ul class='dropdown-menu'>
-                    <form name='quitarRolesForm' method='POST' action='Accion/cambiarRoles.php'>
-                        <input type='hidden' name='idusuario' value="<?php echo $colUsuarios[0]->getIdUsuario(); ?>">
-                        <input type='hidden' name='accion' value="baja">
-                        <button class='btn btn-dark' name='idrol' value='1' type='submit'>Admin</button>
-                        <button class='btn btn-dark' name='idrol' value='2' type='submit'>Deposito</button>
-                        <button class='btn btn-dark' name='idrol' value='3' type='submit'>Cliente</button>
+                    <form id='quitarRolesForm' method='POST'>
+                        <button class='btn btn-dark boton-accion' type='button' value='baja1'
+                            onclick="cambiarRol('baja1', <?php echo $id ?>);">Admin</button>
+                        <button class='btn btn-dark boton-accion' type='button' value='baja2'
+                            onclick="cambiarRol('baja2', <?php echo $id ?>);">Deposito</button>
+                        <button class='btn btn-dark boton-accion' type='button' value='baja3'
+                            onclick="cambiarRol('baja3', <?php echo $id ?>);">Cliente</button>
                     </form>
 
                 </ul>
@@ -89,6 +91,36 @@ $colUsuarioRol = $objUsuarioRol->buscar($idUsuario);
             <a href="./homeAdministrador.php"><input type="submit" value="Volver" class="btn text- white btn-dark">
                 </input></a>
 </div>
+<script>
+// Se cuando se hace click en los botones dentro del formulario
+// $('#agregarRolesForm button, #quitarRolesForm button').on('click', function(event) {
+
+function cambiarRol(rol, idusuario) {
+    var accion = {
+        rol: rol,
+        idusuario: idusuario
+    };
+
+    $.ajax({
+
+        type: 'POST',
+        url: './Accion/cambiarRoles.php',
+        data: accion,
+
+        // Datos a enviar al servidor
+        success: function(response) {
+            // Respuesta
+            console.log('Datos enviados con éxito:', response);
+            location.reload(true);
+        },
+        error: function(xhr, status, error) {
+            // Errores
+            console.error('Error en la solicitud:', status, error);
+        }
+    });
+}
+</script>
+
 <?php 
 include_once('../estructura/footer.php');
 ?>
